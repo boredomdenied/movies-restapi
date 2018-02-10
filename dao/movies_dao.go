@@ -3,12 +3,12 @@ package dao
 import (
 	"log"
 
-	. "github.com/mlabouardy/movies-restapi/models"
+	. "github.com/boredomdenied/users-restapi/models"
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
 
-type MoviesDAO struct {
+type UsersDAO struct {
 	Server   string
 	Database string
 }
@@ -16,11 +16,11 @@ type MoviesDAO struct {
 var db *mgo.Database
 
 const (
-	COLLECTION = "movies"
+	COLLECTION = "users"
 )
 
 // Establish a connection to database
-func (m *MoviesDAO) Connect() {
+func (m *UsersDAO) Connect() {
 	session, err := mgo.Dial(m.Server)
 	if err != nil {
 		log.Fatal(err)
@@ -28,34 +28,34 @@ func (m *MoviesDAO) Connect() {
 	db = session.DB(m.Database)
 }
 
-// Find list of movies
-func (m *MoviesDAO) FindAll() ([]Movie, error) {
-	var movies []Movie
-	err := db.C(COLLECTION).Find(bson.M{}).All(&movies)
-	return movies, err
+// Find list of users
+func (m *UsersDAO) FindAll() ([]User, error) {
+	var users []User
+	err := db.C(COLLECTION).Find(bson.M{}).All(&users)
+	return users, err
 }
 
-// Find a movie by its id
-func (m *MoviesDAO) FindById(id string) (Movie, error) {
-	var movie Movie
-	err := db.C(COLLECTION).FindId(bson.ObjectIdHex(id)).One(&movie)
-	return movie, err
+// Find a user by its id
+func (m *UsersDAO) FindById(id string) (User, error) {
+	var user User
+	err := db.C(COLLECTION).FindId(bson.ObjectIdHex(id)).One(&user)
+	return user, err
 }
 
-// Insert a movie into database
-func (m *MoviesDAO) Insert(movie Movie) error {
-	err := db.C(COLLECTION).Insert(&movie)
+// Insert a user into database
+func (m *UsersDAO) Insert(user User) error {
+	err := db.C(COLLECTION).Insert(&user)
 	return err
 }
 
-// Delete an existing movie
-func (m *MoviesDAO) Delete(movie Movie) error {
-	err := db.C(COLLECTION).Remove(&movie)
+// Delete an existing user
+func (m *UsersDAO) Delete(user User) error {
+	err := db.C(COLLECTION).Remove(&user)
 	return err
 }
 
-// Update an existing movie
-func (m *MoviesDAO) Update(movie Movie) error {
-	err := db.C(COLLECTION).UpdateId(movie.ID, &movie)
+// Update an existing user
+func (m *UsersDAO) Update(user User) error {
+	err := db.C(COLLECTION).UpdateId(user.ID, &user)
 	return err
 }

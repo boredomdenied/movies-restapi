@@ -8,9 +8,9 @@ import (
 	"gopkg.in/mgo.v2/bson"
 
 	"github.com/gorilla/mux"
-	. "github.com/boredomdenied/users-restapi/config"
-	. "github.com/boredomdenied/users-restapi/dao"
-	. "github.com/boredomdenied/users-restapi/models"
+	. "users-restapi/config"
+	. "users-restapi/dao"
+	. "users-restapi/models"
 )
 
 var config = Config{}

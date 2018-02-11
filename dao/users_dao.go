@@ -3,7 +3,7 @@ package dao
 import (
 	"log"
 
-	"github.com/boredomdenied/users-restapi/models"
+	. "users-restapi/models"
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
